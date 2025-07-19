@@ -2,13 +2,13 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 #[tauri::command]
-fn greet(name: &str , email: &str){
-  println!("Inside Rust Code");
-  format!("Hello, {}! You are logged in with Email: {}", name , email);
+fn greet(name: &str) -> String {
+    println!("Inside Rust Code");
+    format!("Hello, {}! You are logged in", name)
 }
-fn main() { 
-  tauri::Builder::default()
-  .invoke_handler = tauri::generate_handler![greet]
-  .run(tauri::generate_context!())
-  .expect("error while running tauri application");
+fn main() {
+    tauri::Builder::default()
+        .invoke_handler(tauri::generate_handler![greet])
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
 }

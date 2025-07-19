@@ -1,4 +1,4 @@
-"Use client";
+"use client";
 
 import { invoke } from "@tauri-apps/api/core";
 import { useState } from "react";
@@ -6,12 +6,12 @@ import "./form.css";
 
 export default function Form() {
 	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		if (name && email) {
-			invoke<string>("greet", { name, email })
+		if (name && password) {
+			invoke<string>("greet", { name, password })
 				.then((result) => console.log(result))
 				.catch(console.error);
 		}
@@ -21,7 +21,7 @@ export default function Form() {
 		<div className="form-container">
 			<form onSubmit={handleSubmit}>
 				<div className="form-group">
-					<label htmlFor="name"> Name: </label>
+					<label htmlFor="name"> UserName: </label>
 					<input
 						type="text"
 						id="name"
@@ -30,12 +30,12 @@ export default function Form() {
 					/>
 				</div>
 				<div className="form-group">
-					<label htmlFor="email"> Name: </label>
+					<label htmlFor="password"> Password: </label>
 					<input
-						type="text"
-						id="email"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
+						type="password"
+						id="password"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
 					/>
 				</div>
 				<button type="submit">Submit</button>
